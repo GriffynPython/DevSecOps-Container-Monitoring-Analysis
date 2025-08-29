@@ -67,7 +67,9 @@ This project demonstrates a **container security and monitoring solution** for a
   trivy image alpine:3.10
   ```
 - **Output**: Lists CVEs and misconfigurations (e.g., outdated packages).
-- **Screenshot**: [Insert `image1.png` here, showing Trivy scan results for `alpine:3.10`]
+<img width="940" height="202" alt="image" src="https://github.com/user-attachments/assets/1b61be6f-ed4b-4907-8ee3-35e0cc98c714" />
+<img width="940" height="474" alt="image" src="https://github.com/user-attachments/assets/88743ea7-1036-4ba5-9691-fe76325551a7" />
+
 
 ### 5. Set Up Docker Compose for Monitoring
 - Create a `docker-compose.yml` file to define services for `alpine-app`, `cAdvisor`, and `Prometheus`.
@@ -106,7 +108,9 @@ services:
   - **cadvisor**: Collects container metrics, requiring privileged access and host filesystem mounts (`/var/run/docker.sock`, etc.).
   - **prometheus**: Scrapes metrics from cAdvisor, configured via `prometheus.yml`.
 
-- **Screenshot**: [Insert `image2.png` here, showing Docker Compose setup or running containers]
+<img width="940" height="451" alt="image" src="https://github.com/user-attachments/assets/5ef9d5cb-3546-4b52-8795-c7d4a7364123" />
+<img width="940" height="476" alt="image" src="https://github.com/user-attachments/assets/6ed297ed-2e79-439e-96c2-cf4527c81bf2" />
+
 
 ### 6. Configure Prometheus
 - Create a `prometheus.yml` file for Prometheus configuration.
@@ -123,6 +127,7 @@ scrape_configs:
     static_configs:
       - targets: ['cadvisor:8080']
 ```
+<img width="940" height="481" alt="image" src="https://github.com/user-attachments/assets/4d650606-d855-4e47-b3aa-68c6798c55e0" />
 
 - **Explanation**:
   - `global`: Sets a 15-second scrape interval.
@@ -138,7 +143,9 @@ scrape_configs:
   ```bash
   curl http://localhost:9090
   ```
-- **Screenshot**: [Insert `image3.png` here, showing Prometheus UI at `http://localhost:9090`]
+<img width="940" height="464" alt="image" src="https://github.com/user-attachments/assets/6042f131-bcc1-4bdd-8b09-b91188a6ca08" />
+<img width="940" height="465" alt="image" src="https://github.com/user-attachments/assets/5f946a2c-7ff0-4cf0-a584-2e17e2295106" />
+
 
 ### 7. Runtime Monitoring with PromQL
 - Access Prometheus UI at `http://localhost:9090`.
@@ -148,23 +155,23 @@ scrape_configs:
     rate(container_cpu_usage_seconds_total{container_label_com_docker_compose_service="alpine-app"}[5m])
     ```
     - Measures CPU usage rate for `alpine-app` over 5 minutes.
-    - **Screenshot**: [Insert `image4.png` here, showing CPU usage graph]
+    
   - **CPU Usage (by image)**:
     ```
     rate(container_cpu_usage_seconds_total{image="alpine:3.10"}[5m])
     ```
     - Measures CPU usage for the `alpine:3.10` image.
-    - **Screenshot**: [Insert `image5.png` here, showing CPU usage graph]
+
   - **Memory Usage**:
     ```
     container_memory_usage_bytes{container_label_com_docker_compose_service="alpine-app"}
     ```
-    - **Screenshot**: [Insert `image6.png` here, showing memory usage]
+    
   - **Network I/O**:
     ```
     rate(container_network_receive_bytes_total{container_label_com_docker_compose_service="alpine-app"}[5m])
     ```
-    - **Screenshot**: [Insert `image7.png` here, showing network I/O]
+    
 
 ### 8. Troubleshooting
 - **Prometheus Not Scraping**:
@@ -173,7 +180,11 @@ scrape_configs:
     curl http://localhost:8080/metrics
     ```
   - Check `prometheus.yml` for correct targets.
-  - **Screenshot**: [Insert `image8.png` here, showing cAdvisor metrics]
+  <img width="940" height="464" alt="image" src="https://github.com/user-attachments/assets/51a43763-6f3e-4a5f-b8d1-7f863e6ce26b" />
+  <img width="940" height="463" alt="image" src="https://github.com/user-attachments/assets/0445eee2-da7c-4637-bdaa-be4ab8b86a7c" />
+  <img width="940" height="462" alt="image" src="https://github.com/user-attachments/assets/ff4a7f12-aeb0-46e4-b884-09437ade087a" />
+
+
 - **Docker Permissions**:
   - Add user to Docker group:
     ```bash
